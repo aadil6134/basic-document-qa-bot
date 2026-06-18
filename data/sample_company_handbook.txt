@@ -1,0 +1,13 @@
+BookExpert Sample Company Handbook
+
+Vacation Policy
+Full-time employees receive 18 paid vacation days per calendar year. Unused vacation days do not roll over unless a written exception is approved by HR before December 15.
+
+Remote Work Policy
+Employees may work remotely up to three days per week. Team leads can approve fully remote arrangements for roles that do not require in-office equipment.
+
+Expense Policy
+Business travel expenses must be submitted within 30 days of the trip ending. Receipts are required for any single expense above 25 USD.
+
+Support Hours
+Customer support operates Monday through Friday from 9:00 AM to 6:00 PM local office time. Emergency production incidents are handled by the on-call rotation.
