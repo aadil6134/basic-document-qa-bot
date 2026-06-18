@@ -16,19 +16,19 @@ A Python Retrieval-Augmented Generation (RAG) app that answers questions from lo
 
 ```text
 document-qa-bot/
-├── .env.example
-├── .gitignore
-├── README.md
-├── requirements.txt
-├── data/
-│   └── sample_company_handbook.txt
-├── db/
-└── src/
-    ├── __init__.py
-    ├── config.py
-    ├── ingest.py
-    ├── query.py
-    └── main.py
+|-- .env.example
+|-- .gitignore
+|-- README.md
+|-- requirements.txt
+|-- data/
+|   `-- sample_company_handbook.txt
+|-- db/
+`-- src/
+    |-- __init__.py
+    |-- config.py
+    |-- ingest.py
+    |-- query.py
+    `-- main.py
 ```
 
 ## Setup
@@ -103,13 +103,3 @@ Configuration is read from `.env` and defaults are defined in `src/config.py`.
 | `GEMINI_GENERATION_MODEL` | Gemini text generation model. |
 | `GEMINI_EMBEDDING_MODEL` | Gemini embedding model. |
 | `CHROMA_COLLECTION` | ChromaDB collection name. |
-
-## Notes For Submission
-
-The assignment asks for:
-
-- A public GitHub repository with the project source and README.
-- A published or deployed project link.
-- A 3 to 5 minute screen recording walking through the project and code.
-
-For deployment, Streamlit Community Cloud is a simple fit. Add `GEMINI_API_KEY` as a Streamlit secret instead of committing it to the repository.
