@@ -156,7 +156,7 @@ def make_chunk_id(chunk: dict) -> str:
 
 
 def build_embedding_function() -> GeminiEmbeddingFunction:
-    return GeminiEmbeddingFunction(task_type="retrieval_document")
+    return GeminiEmbeddingFunction(task_type="RETRIEVAL_DOCUMENT")
 
 
 def save_to_vector_db(chunks: Iterable[dict], db_path: Path, reset: bool = False) -> int:

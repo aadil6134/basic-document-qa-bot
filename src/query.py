@@ -11,6 +11,9 @@ from src.embeddings import GeminiEmbeddingFunction
 
 
 NOT_FOUND_MESSAGE = "I cannot find the answer in the provided documents."
+MISSING_INDEX_MESSAGE = (
+    "The document index does not exist yet. Add documents to the data folder and rebuild the index."
+)
 
 
 def build_embedding_function() -> GeminiEmbeddingFunction:
@@ -23,6 +26,11 @@ def get_collection(db_path: Path = settings.db_path):
         name=settings.collection_name,
         embedding_function=build_embedding_function(),
     )
+
+
+def is_missing_collection_error(error: Exception) -> bool:
+    message = str(error).lower()
+    return settings.collection_name.lower() in message and "does not exist" in message
 
 
 def format_context(results: dict) -> tuple[str, list[str]]:
@@ -65,7 +73,20 @@ def query_rag_pipeline(
     db_path: Path = settings.db_path,
     k: int = settings.top_k,
 ) -> dict:
-    collection = get_collection(db_path)
+    try:
+        collection = get_collection(db_path)
+    except Exception as exc:
+        if not is_missing_collection_error(exc):
+            raise
+
+        from src.ingest import ingest
+
+        indexed_count = ingest(db_path=db_path, reset=False)
+        if indexed_count == 0:
+            return {"answer": MISSING_INDEX_MESSAGE, "citations": [], "raw_context": []}
+
+        collection = get_collection(db_path)
+
     results = collection.query(query_texts=[user_query], n_results=k)
     context_payload, citations = format_context(results)
 
